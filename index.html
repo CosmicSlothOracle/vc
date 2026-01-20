@@ -69,12 +69,19 @@
         }
 
         .header-icon {
-            font-size: 48px;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, #d4af8f 0%, #c9a577 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header-logo {
+            max-width: 180px;
+            max-height: 80px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 8px rgba(139, 90, 43, 0.15));
         }
 
         .name {
@@ -348,8 +355,9 @@
                 font-size: 28px;
             }
 
-            .header-icon {
-                font-size: 40px;
+            .header-logo {
+                max-width: 150px;
+                max-height: 65px;
             }
 
             .actions {
@@ -394,7 +402,7 @@
         
         <div class="header">
             <div class="header-icon">
-                <i class="fas fa-crown"></i>
+                <img src="Logo_Erlenbad-Resort_2023_ER_4C_3D-Web-kein-verlauf (1).png" alt="Erlenbad Resort Logo" class="header-logo">
             </div>
             <div class="name">Michaela Ehinger</div>
             <div class="title">Resort Manager</div>
