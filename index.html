@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michaela Ehinger - Resort Manager</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f5ede0 0%, #ede2d4 50%, #e8dcc4 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: linear-gradient(to bottom, #faf6f0 0%, #f5ede0 100%);
+            border-radius: 0;
+            box-shadow: 0 15px 50px rgba(139, 90, 43, 0.15), 0 0 0 1px rgba(200, 170, 140, 0.3);
+            max-width: 500px;
+            width: 100%;
+            overflow: hidden;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Elegante Linie als Dekoration */
+        .decoration-top {
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #c9a577, #d4af8f, #c9a577, transparent);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f9f4ed 0%, #f5ede0 100%);
+            padding: 50px 30px 40px;
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid rgba(201, 165, 119, 0.2);
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201, 165, 119, 0.5), transparent);
+        }
+
+        .header-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #d4af8f 0%, #c9a577 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .name {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #3d2817;
+            letter-spacing: 0.5px;
+        }
+
+        .title {
+            font-size: 16px;
+            font-weight: 400;
+            color: #8b5a2b;
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .company {
+            font-size: 14px;
+            color: #a0826d;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 12px;
+            color: #c9a577;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(201, 165, 119, 0.2);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 22px;
+            gap: 15px;
+            animation: fadeIn 0.6s ease-out backwards;
+        }
+
+        .info-item:nth-child(1) { animation-delay: 0.1s; }
+        .info-item:nth-child(2) { animation-delay: 0.2s; }
+        .info-item:nth-child(3) { animation-delay: 0.3s; }
+        .info-item:nth-child(4) { animation-delay: 0.4s; }
+        .info-item:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .info-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #d4af8f 0%, #c9a577 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(201, 165, 119, 0.3);
+        }
+
+        .info-content {
+            flex: 1;
+        }
+
+        .info-label {
+            font-size: 11px;
+            color: #a0826d;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .info-text {
+            font-size: 15px;
+            color: #3d2817;
+            font-weight: 400;
+            word-break: break-word;
+            line-height: 1.5;
+        }
+
+        a {
+            color: #8b5a2b;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: #c9a577;
+            border-bottom: 1px solid #c9a577;
+        }
+
+        .location-detail {
+            font-size: 14px;
+            color: #3d2817;
+            line-height: 1.8;
+            margin-top: 5px;
+        }
+
+        .actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 35px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(201, 165, 119, 0.2);
+        }
+
+        .btn {
+            padding: 14px 16px;
+            border: 1.5px solid #c9a577;
+            background: white;
+            color: #8b5a2b;
+            border-radius: 2px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+
+        .btn:hover {
+            background: #d4af8f;
+            color: white;
+            border-color: #d4af8f;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(201, 165, 119, 0.3);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #c9a577 0%, #d4af8f 100%);
+            color: white;
+            border-color: transparent;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(201, 165, 119, 0.4);
+        }
+
+        .social-section {
+            margin-top: 35px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(201, 165, 119, 0.2);
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeIn 0.6s ease-out 0.6s backwards;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .social-btn.instagram {
+            background: linear-gradient(135deg, #f58529 0%, #dd2a7b 50%, #8134af 100%);
+            color: white;
+        }
+
+        .social-btn.facebook {
+            background: linear-gradient(135deg, #1877f2 0%, #0a66c2 100%);
+            color: white;
+        }
+
+        .social-btn.youtube {
+            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+            color: white;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .video-section {
+            margin-top: 35px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(201, 165, 119, 0.2);
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 2px;
+            box-shadow: 0 4px 12px rgba(201, 165, 119, 0.2);
+            animation: fadeIn 0.6s ease-out 0.7s backwards;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201, 165, 119, 0.2), transparent);
+            margin: 30px 0;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 25px 30px;
+            background: linear-gradient(to bottom, rgba(201, 165, 119, 0.05), rgba(201, 165, 119, 0.1));
+            font-size: 12px;
+            color: #a0826d;
+            border-top: 1px solid rgba(201, 165, 119, 0.15);
+        }
+
+        .footer p {
+            margin: 0;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 35px 20px 30px;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .name {
+                font-size: 28px;
+            }
+
+            .header-icon {
+                font-size: 40px;
+            }
+
+            .actions {
+                grid-template-columns: 1fr;
+            }
+
+            .footer {
+                padding: 20px;
+            }
+
+            .social-buttons {
+                gap: 8px;
+            }
+
+            .social-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .container {
+                box-shadow: none;
+                border: none;
+            }
+
+            .video-section,
+            .social-section {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="decoration-top"></div>
+        
+        <div class="header">
+            <div class="header-icon">
+                <i class="fas fa-crown"></i>
+            </div>
+            <div class="name">Michaela Ehinger</div>
+            <div class="title">Resort Manager</div>
+            <div class="company">Grossmann Group – Erlenbad Resort</div>
+        </div>
+
+        <div class="content">
+            <div class="section-title">Kontaktinformationen</div>
+
+            <div class="info-item">
+                <div class="info-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <div class="info-content">
+                    <div class="info-label">Telefon</div>
+                    <div class="info-text"><a href="tel:+4915121586100">+49 151 21 58 61</a></div>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="info-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="info-content">
+                    <div class="info-label">E-Mail</div>
+                    <div class="info-text"><a href="mailto:me@erlenbad-resort.de">me@erlenbad-resort.de</a></div>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="info-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <div class="info-content">
+                    <div class="info-label">Website</div>
+                    <div class="info-text"><a href="https://erlenbad-resort.de/" target="_blank">erlenbad-resort.de</a></div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="section-title">Adresse</div>
+
+            <div class="info-item">
+                <div class="info-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="info-content">
+                    <div class="location-detail">
+                        Erlenbadstraße 75<br>
+                        77880 Sasbach<br>
+                        Baden-Württemberg<br>
+                        Deutschland
+                    </div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <a href="tel:+4915121586100" class="btn">
+                    <i class="fas fa-phone"></i> Anrufen
+                </a>
+                <a href="mailto:me@erlenbad-resort.de" class="btn">
+                    <i class="fas fa-envelope"></i> E-Mail
+                </a>
+            </div>
+
+            <!-- Social Media Section -->
+            <div class="social-section">
+                <div class="section-title">Folgen Sie uns</div>
+                <div class="social-buttons">
+                    <a href="https://www.instagram.com/erlenbad.resort" target="_blank" class="social-btn instagram" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/erlenbad.resort" target="_blank" class="social-btn facebook" title="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=6hVj2nacjz4" target="_blank" class="social-btn youtube" title="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- YouTube Video Section -->
+            <div class="video-section">
+                <div class="section-title">Erlenbad Resort Präsentation</div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/6hVj2nacjz4?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>✦ Digitale Visitenkarte – Erlenbad Resort ✦</p>
+        </div>
+    </div>
+
+    <script>
+        // Haptic feedback für Mobile Geräte
+        document.querySelectorAll('a, .social-btn').forEach(link => {
+            link.addEventListener('click', function() {
+                if (navigator.vibrate) {
+                    navigator.vibrate(100);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
